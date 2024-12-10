@@ -178,12 +178,10 @@ public class StudentController
 
 	@GetMapping("/addproject")
 	public ModelAndView addProjectForm() {
-	    ModelAndView mv = new ModelAndView("addproject"); // View where the student uploads a project
+	    ModelAndView mv = new ModelAndView("addproject");
 
-	    // Fetch list of faculties (this can be from a database or service)
 	    List<Faculty> faculties = facultyService.getAllFaculties();
 
-	    // Add the list of faculties to the ModelAndView
 	    mv.addObject("faculties", faculties);
 
 	    return mv;
@@ -201,7 +199,6 @@ public class StudentController
 	                                    @RequestParam("facultyId") int facultyId) {
 	     ModelAndView mv = new ModelAndView();
 	     
-	     // Retrieve the student object from session
 	     HttpSession session = request.getSession();
 	     Student student = (Student) session.getAttribute("student");
 
@@ -214,30 +211,23 @@ public class StudentController
 	                 throw new Exception("Invalid faculty selected.");
 	             }
 
-	             // Create a new Project entity and set its fields
 	             Project project = new Project();
 	             project.setProjectNumber(projectNumber);
 	             project.setName(projectName);
 	             project.setDescription(projectDescription);
 	             project.setUrl(projectUrl);
 
-	             // Associate the student and faculty with the project
 	             project.setStudent(student);
-	             project.setFaculty(faculty); // Assuming `setFaculty` is defined in the `Project` entity
-
-	             // Save the project to the database
+	             project.setFaculty(faculty); 
 	             projectService.addProject(project);
 
-	             // Set the success message and view
 	             mv.setViewName("projectmsg");
 	             mv.addObject("message", "Project uploaded successfully!");
 	         } catch (Exception e) {
-	             // Handle errors during saving the project
 	             mv.setViewName("projectmsg");
 	             mv.addObject("message", "Error uploading project: " + e.getMessage());
 	         }
 	     } else {
-	         // If the student is not logged in, show the error message
 	         mv.setViewName("projectmsg");
 	         mv.addObject("message", "You must be logged in to upload a project.");
 	     }
@@ -250,7 +240,7 @@ public class StudentController
 		{
 			ModelAndView mv= new ModelAndView("viewmyprojects");
 			HttpSession session = request.getSession();
-			Student stu =(Student) session.getAttribute("student"); //employee is session object
+			Student stu =(Student) session.getAttribute("student"); 
 			
 			List<Project> projectlist=projectService.viewProjectsByStudentId(stu.getId());
 			
@@ -262,16 +252,12 @@ public class StudentController
 	     Project project = projectRepository.findProjectById(projectId);
 
 	     if (project != null) {
-	         // Set the feedback
 	         project.setFeedback(feedbackText);
 
-	         // Save the updated project
 	         projectRepository.save(project);
 
-	         // Redirect to the desired page
 	         return "redirect:/viewallprojects";
 	     } else {
-	         // Handle project not found
 	         return "redirect:/errorPage";
 	     }
 	 }
@@ -284,8 +270,6 @@ public class StudentController
 	   }
 	 
 	   
-	   // enctype="multipart/form-data" is used in HTML forms to enable file uploads. 
-	   // It ensures that form data, including binary files, is encoded correctly when submitted to the server. 
 	  
 	   @PostMapping("insertportfolio")
 	   public ModelAndView insertportfolio(HttpServletRequest request,@RequestParam("file") MultipartFile file) throws Exception
@@ -338,7 +322,7 @@ public class StudentController
 	   
 	   @GetMapping("displayfile")
 	   public ResponseEntity<byte[]> displayFile(@RequestParam int id) throws Exception {
-	       Portfolio portfolio = portfolioService.GetPortfolioByID(id); // Adjust based on your service method
+	       Portfolio portfolio = portfolioService.GetPortfolioByID(id); 
 	       byte[] fileBytes = null;
 
 	       if (portfolio.getFile() != null) {
