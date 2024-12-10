@@ -57,7 +57,7 @@ public class AdminController
 		}
 		else
 		{
-			mv.setViewName("adminloginfail");
+			mv.setViewName("adminlogin");
 			mv.addObject("message","Login Failed");
 		}
 		return mv;
