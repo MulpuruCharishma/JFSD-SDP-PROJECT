@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<%@ include file="stunavbar.jsp" %> <!-- Include your navbar -->
+<%@ include file="stunavbar.jsp" %> 
 <div class="rig-contt">
     <h3 style="margin-left: 300px; margin-bottom: 40px;"><u>Upload Portfolio</u></h3>
 <br>
