@@ -28,7 +28,7 @@ public class Portfolio {
    private String skills;
 
    @Column(name="file",nullable = false)
-   private Blob file; // blob - binary large object
+   private Blob file; 
 
 public int getId() {
 	return id;
