@@ -13,16 +13,12 @@ import com.klef.jfsd.project.model.Project;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
-   // Find all projects by the student ID
    List<Project> findByStudentId(int studentId);
 
-   // Find project by project number
    Project findByProjectNumber(String projectNumber);
 
-   // Find projects by name (part of the name)
    List<Project> findByNameContainingIgnoreCase(String name);
 
-   // Find all projects associated with a specific student
    List<Project> findByStudent_Name(String studentName);
    
    List<Project> findAll();
