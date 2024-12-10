@@ -22,11 +22,11 @@ public class Project {
    private int id;
    
    @ManyToOne
-   @JoinColumn(name = "stu_id", nullable = false) // Association with the student
+   @JoinColumn(name = "stu_id", nullable = false) 
    private Student student;
    
    @ManyToOne
-   @JoinColumn(name = "faculty_id", nullable = false) // Association with the faculty
+   @JoinColumn(name = "faculty_id", nullable = false) 
    private Faculty faculty;
 
    @Column(name = "project_number", nullable = false, length = 100)
@@ -44,10 +44,6 @@ public class Project {
    @Column(name = "feedback", length =1000)
    private String feedback;
    
-  // @Column(name = "project_pdf", nullable = false)
-  // private Blob pdf;  // Store the uploaded PDF file
-
-   // Getters and setters for all fields
    public int getId() {
        return id;
    }
@@ -110,15 +106,4 @@ public String getFeedback() {
 
 public void setFeedback(String feedback) {
 	this.feedback = feedback;
-}
-
-
-
-//   public Blob getPdf() {
-//       return pdf;
-//   }
-//
-//   public void setPdf(Blob pdf) {
-//       this.pdf = pdf;
-//   }
 }
