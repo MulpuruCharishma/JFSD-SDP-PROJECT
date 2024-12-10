@@ -174,17 +174,14 @@ public class FacultyController
 
 	    // Fetch the faculty object from the session
 	    HttpSession session = request.getSession();
-	    Faculty faculty = (Faculty) session.getAttribute("faculty"); // Assuming the faculty is stored in session
+	    Faculty faculty = (Faculty) session.getAttribute("faculty");
 
 	    if (faculty != null) {
-	        // Fetch the projects associated with the faculty
 	        List<Project> projects = projectService.findProjectsByFaculty(faculty);
-	        mv.setViewName("viewallprojects"); // View for displaying the projects
-
-	        // Pass the list of projects to the view
+	        mv.setViewName("viewallprojects"); 
 	        mv.addObject("projects", projects);
 	    } else {
-	        mv.setViewName("error");  // Error view if no faculty is logged in
+	        mv.setViewName("error");  
 	        mv.addObject("message", "You need to log in as a faculty member to view the projects.");
 	    }
 
